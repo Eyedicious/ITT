@@ -13,7 +13,13 @@
         <link rel="stylesheet" type="text/css" href="Pagestyler.css">
         <title>JSP Page</title>
     </head>
-    <body>
+    <body onload="loadProducts()">
+        <script>
+            function loadProducts()
+            {
+                
+            }
+        </script>
         <div class="toprow">
             <div class="logo">
                 <a href="index.jsp"><img border="0" src="logo.png" alt="home"></a>
