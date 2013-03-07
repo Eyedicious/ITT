@@ -20,8 +20,14 @@
                         <a href="newproducts.jsp"><li>Nieuwe toevoegingen</li></a>
                         <a href="productpage.jsp"><li>Producten</li></a>
                         <a href="winkelwagen.jsp"><li>Winkelwager</li></a>
-                        <a href="inloggen.jsp"><li>inloggen</li></a>
                     </ul>
+                </div>
+                <div id="login">
+                    <form method="POST" action="inloggen">
+                        Username: <input type="text" id="user" /><br />
+                        Wachtwoord: <input type="password" id="pass" /><br />
+                        <input type="submit" value="Inloggen" style="margin-right: 40px;"/>
+                    </form>
                 </div>
             </div>
             <div class="content">

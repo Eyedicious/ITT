@@ -52,11 +52,26 @@ header
 
 .menu
 {
-    width:80%;
+    width:50%;
     float:left;
     height: 100%;
     background: #33AAFF;
 }
+
+#login
+{
+    width: 30%;
+    float: right;
+    height:100%;
+    background: #33AACC;
+}
+
+#login form
+{
+    display: inline-block;
+    text-align: right;
+}
+
 .menu ul li
 {
     height: 100%;
