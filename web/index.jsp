@@ -13,7 +13,7 @@
         <div id="background">
             <div class="toprow">
                 <div class="logo">
-                    <a href="index.jsp"><img border="0" src="/logo.png" alt="home"></a>
+                    <a href="index.jsp"><img border="0" src="Logo.png" alt="home" style="width:175px;height:125px;"></a>
                 </div>
                 <div class="menu">
                     <ul>
@@ -27,7 +27,8 @@
                         Username: <input type="text" id="user" /><br />
                         Wachtwoord: <input type="password" id="pass" /><br />
                         <input type="submit" value="Inloggen" style="margin-right: 40px;"/>
-                    </form>
+                    </form><br />
+                    <a href="registreren.jsp">Registreren</a>
                 </div>
             </div>
             <div class="content">

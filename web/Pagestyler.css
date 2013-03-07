@@ -33,10 +33,11 @@
 
 .logo
 {
-    width:20%;
+    text-align: center;
+    width:23%;
     height:100%;
     float:left;
-    background: red;
+    background: #BBBBBB;
 }
 
 header
@@ -52,7 +53,7 @@ header
 
 .menu
 {
-    width:50%;
+    width:47%;
     float:left;
     height: 100%;
     background: #33AAFF;
@@ -64,12 +65,13 @@ header
     float: right;
     height:100%;
     background: #33AACC;
+    text-align: right;
+
 }
 
 #login form
 {
-    display: inline-block;
-    text-align: right;
+    /* text-align: right; */
 }
 
 .menu ul li
