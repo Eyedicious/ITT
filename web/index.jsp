@@ -22,7 +22,7 @@
                 <ul>
                     <a href="newproducts.jsp"><li>Nieuwe toevoegingen</li></a>
                     <a href="productpage.jsp"><li>Producten</li></a>
-                    <a href="winkelwagen.jsp"><li>Winkelwager</li></a>
+                    <a href="winkelwagen.jsp"><li>Winkelwagen</li></a>
                     <a href="inloggen.jsp"><li>inloggen</li></a>
                 </ul>
             </div>

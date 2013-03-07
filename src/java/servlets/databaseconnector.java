@@ -10,7 +10,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.sql.PreparedStatement;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -59,23 +61,18 @@ public class databaseconnector extends HttpServlet {
         String user = "root";
         String password = "admin";
         try {
+            Class.forName("com.mysql.jdbc.Driver"); 
             con = DriverManager.getConnection(url, user, password);
             con.setAutoCommit(false);
-            
-            st = con.createStatement();
-            String query = "Select ? from ? where ?";
-            
-            rs = st.executeQuery(query);
-            
+            PreparedStatement queryStatement = null;
+            queryStatement = con.prepareStatement(request.getAttribute("SQL").toString());
+            //queryStatement.executeUpdate();
 
-            if (rs.next()) {
-                System.out.println(rs.getString(1));
-            }
-
-        } catch (SQLException ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
         } finally {
             try {
+                con.setAutoCommit(true);
                 if (rs != null) {
                     rs.close();
                 }
@@ -85,11 +82,14 @@ public class databaseconnector extends HttpServlet {
                 if (con != null) {
                     con.close();
                 }
-
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }
         }
+        System.out.println(request.getContextPath());
+        ServletContext context= getServletContext();
+        RequestDispatcher rd= context.getRequestDispatcher("/"+request.getAttribute("originalLink") +"");
+        rd.forward(request, response); 
     }
 
     /**

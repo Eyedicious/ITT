@@ -81,6 +81,10 @@ public class registreren extends HttpServlet {
             throws ServletException, IOException {
         ServletContext context= getServletContext();
         RequestDispatcher rd= context.getRequestDispatcher("/databaseconnector");
+        System.out.println();
+        System.out.println(request.getServletPath());
+        request.setAttribute("originalLink", request.getRequestURI());
+        request.setAttribute("SQL", "INSERT INTO gebruiker(voornaam, tussenvoegsel, achternaam, email, login, wachtwoord) VALUES("+request.getParameter("voornaam") +", "+request.getParameter("tussenvoegsel") +", "+request.getParameter("achternaam") +", "+request.getParameter("email") +", "+request.getParameter("regname") +", "+request.getParameter("password1") +")");
         rd.forward(request, response); 
        processRequest(request, response);
     }
