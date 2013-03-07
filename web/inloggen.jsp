@@ -12,6 +12,18 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <form name="regUser" method="POST" action="registreren">
+            Gebruikersnaam:         <input type="text" name="regname" value=""/></br>
+            Wachtwoord:             <input type="password" name="password1" value=""/></br>
+            Wachtwoord bevestigen:  <input type="password" name="password2" value=""/></br>
+            <input type="submit"/>
+        </form>
+            
+        <form name="loginUser" method="POST" action="inloggen">
+            Gebruikersnaam:         <input type="text" name="loginname" value=""/></br>
+            Wachtwoord:             <input type="password" name="password" value=""/></br>
+            <input type="submit"/>
+        </form>
+        
     </body>
 </html>
