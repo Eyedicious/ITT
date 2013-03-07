@@ -1,0 +1,70 @@
+/* 
+    Document   : Pagestyler
+    Created on : 3-mrt-2013, 12:45:25
+    Author     : Bart
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+:root 
+{ 
+    background: gainsboro;
+}
+
+#background
+{
+    background: #BBBBBB;
+    min-height: 650px;
+    width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.content
+{
+    margin-left: 90px;
+    margin-right: 90px;
+    margin-top: 50px;
+    margin-bottom: 40px;
+    width: 720px;
+    height: 400px;
+    background: #33BB44;
+}
+
+.logo
+{
+    width:20%;
+    height:100%;
+    float:left;
+    background: red;
+}
+
+header
+{
+    
+}
+
+.toprow
+{
+    height:120px;
+    width:100%;
+}
+
+.menu
+{
+    width:80%;
+    float:left;
+    height: 100%;
+    background: #33AAFF;
+}
+.menu ul li
+{
+    height: 100%;
+    width: 200px;
+    display: inline;
+}
+
+footer
+{
+    
+}
