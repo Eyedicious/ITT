@@ -29,6 +29,7 @@
     width: 720px;
     height: 400px;
     background: #33BB44;
+    text-align: center;
 }
 
 .logo
@@ -84,4 +85,10 @@ header
 footer
 {
     
+}
+
+#registreren
+{
+    padding-top: 50px;
+}
 }

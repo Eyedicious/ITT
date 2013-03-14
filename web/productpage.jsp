@@ -19,7 +19,7 @@
                     <ul>
                         <a href="newproducts.jsp"><li>Nieuwe toevoegingen</li></a>
                         <a href="productpage.jsp"><li>Producten</li></a>
-                        <a href="winkelwagen.jsp"><li>Winkelwager</li></a>
+                        <a href="winkelwagen.jsp"><li>Winkelwagen</li></a>
                     </ul>
                 </div>
                 <div id="login">
@@ -31,8 +31,7 @@
                 </div>
             </div>
             <div class="content">
-                
-                
+                <%= session.getAttribute("productList") %>
             </div>
         </div>
     </body>
