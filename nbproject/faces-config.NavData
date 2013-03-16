@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene Scope="Project" version="2">
+    <Scope Scope="Faces Configuration Only"/>
+    <Scope Scope="Project">
+        <Node id="gebruiker/Edit.xhtml" x="150" y="150" zoom="true"/>
+        <Node id="index.jsp" x="150" y="750" zoom="true"/>
+        <Node id="gebruiker/View.xhtml" x="400" y="300" zoom="true"/>
+        <Node id="template.xhtml" x="400" y="600" zoom="true"/>
+        <Node id="product/Edit.xhtml" x="650" y="150" zoom="true"/>
+        <Node id="gebruiker/List.xhtml" x="150" y="300" zoom="true"/>
+        <Node id="productpage.jsp" x="1150" y="150" zoom="true"/>
+        <Node id="product/List.xhtml" x="900" y="150" zoom="true"/>
+        <Node id="winkelwagen.jsp" x="199" y="64" zoom="true"/>
+        <Node id="newproducts.jsp" x="650" y="300" zoom="true"/>
+        <Node id="registreren.jsp" x="400" y="450" zoom="true"/>
+        <Node id="index.xhtml" x="1400" y="150" zoom="true"/>
+        <Node id="product/View.xhtml" x="150" y="450" zoom="true"/>
+        <Node id="gebruiker/Create.xhtml" x="900" y="300" zoom="true"/>
+        <Node id="inloggen.jsp" x="150" y="600" zoom="true"/>
+        <Node id="product/Create.xhtml" x="650" y="450" zoom="true"/>
+    </Scope>
+    <Scope Scope="All Faces Configurations"/>
+</Scene>

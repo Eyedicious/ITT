@@ -1,40 +1,17 @@
+<%-- 
+    Document   : index
+    Created on : 16-mrt-2013, 10:30:28
+    Author     : Bart
+--%>
 
-
-
-
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" type="text/css" href="Pagestyler.css">
         <title>JSP Page</title>
     </head>
     <body>
-        <div id="background">
-            <div class="toprow">
-                <div class="logo">
-                    <a href="index.jsp"><img border="0" src="Logo.png" alt="home" style="width:175px;height:125px;"></a>
-                </div>
-                <div class="menu">
-                    <ul>
-                        <a href="newproducts.jsp"><li>Nieuwe toevoegingen</li></a>
-                        <a href="productpage.jsp"><li>Producten</li></a>
-                        <a href="winkelwagen.jsp"><li>Winkelwager</li></a>
-                    </ul>
-                </div>
-                <div id="login">
-                    <form method="POST" action="inloggen">
-                        Username: <input type="text" id="user" /><br />
-                        Wachtwoord: <input type="password" id="pass" /><br />
-                        <input type="submit" value="Inloggen" style="margin-right: 40px;"/>
-                    </form><br />
-                    <a href="registreren.jsp">Registreren</a>
-                </div>
-            </div>
-            <div class="content">
-                
-                
-            </div>
-        </div>
+        <h1>Hello World!</h1>
     </body>
 </html>
