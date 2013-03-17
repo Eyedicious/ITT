@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewGebruikerTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewGebruikerLabel_idGebruiker}"/>
+                    <h:outputText value="#{gebruikerController.selected.idGebruiker}" title="#{bundle.ViewGebruikerTitle_idGebruiker}"/>
+                    <h:outputText value="#{bundle.ViewGebruikerLabel_voornaam}"/>
+                    <h:outputText value="#{gebruikerController.selected.voornaam}" title="#{bundle.ViewGebruikerTitle_voornaam}"/>
+                    <h:outputText value="#{bundle.ViewGebruikerLabel_tussenvoegsel}"/>
+                    <h:outputText value="#{gebruikerController.selected.tussenvoegsel}" title="#{bundle.ViewGebruikerTitle_tussenvoegsel}"/>
+                    <h:outputText value="#{bundle.ViewGebruikerLabel_achternaam}"/>
+                    <h:outputText value="#{gebruikerController.selected.achternaam}" title="#{bundle.ViewGebruikerTitle_achternaam}"/>
+                    <h:outputText value="#{bundle.ViewGebruikerLabel_email}"/>
+                    <h:outputText value="#{gebruikerController.selected.email}" title="#{bundle.ViewGebruikerTitle_email}"/>
+                    <h:outputText value="#{bundle.ViewGebruikerLabel_login}"/>
+                    <h:outputText value="#{gebruikerController.selected.login}" title="#{bundle.ViewGebruikerTitle_login}"/>
+                    <h:outputText value="#{bundle.ViewGebruikerLabel_wachtwoord}"/>
+                    <h:outputText value="#{gebruikerController.selected.wachtwoord}" title="#{bundle.ViewGebruikerTitle_wachtwoord}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{gebruikerController.destroyAndView}" value="#{bundle.ViewGebruikerDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewGebruikerEditLink}"/>
+                <br />
+                <h:commandLink action="#{gebruikerController.prepareCreate}" value="#{bundle.ViewGebruikerCreateLink}" />
+                <br />
+                <h:commandLink action="#{gebruikerController.prepareList}" value="#{bundle.ViewGebruikerShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewGebruikerIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

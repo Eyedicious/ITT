@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditGebruikerTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditGebruikerLabel_idGebruiker}" for="idGebruiker" />
+                    <h:inputText id="idGebruiker" value="#{gebruikerController.selected.idGebruiker}" title="#{bundle.EditGebruikerTitle_idGebruiker}" required="true" requiredMessage="#{bundle.EditGebruikerRequiredMessage_idGebruiker}"/>
+                    <h:outputLabel value="#{bundle.EditGebruikerLabel_voornaam}" for="voornaam" />
+                    <h:inputText id="voornaam" value="#{gebruikerController.selected.voornaam}" title="#{bundle.EditGebruikerTitle_voornaam}" required="true" requiredMessage="#{bundle.EditGebruikerRequiredMessage_voornaam}"/>
+                    <h:outputLabel value="#{bundle.EditGebruikerLabel_tussenvoegsel}" for="tussenvoegsel" />
+                    <h:inputText id="tussenvoegsel" value="#{gebruikerController.selected.tussenvoegsel}" title="#{bundle.EditGebruikerTitle_tussenvoegsel}" />
+                    <h:outputLabel value="#{bundle.EditGebruikerLabel_achternaam}" for="achternaam" />
+                    <h:inputText id="achternaam" value="#{gebruikerController.selected.achternaam}" title="#{bundle.EditGebruikerTitle_achternaam}" required="true" requiredMessage="#{bundle.EditGebruikerRequiredMessage_achternaam}"/>
+                    <h:outputLabel value="#{bundle.EditGebruikerLabel_email}" for="email" />
+                    <h:inputText id="email" value="#{gebruikerController.selected.email}" title="#{bundle.EditGebruikerTitle_email}" required="true" requiredMessage="#{bundle.EditGebruikerRequiredMessage_email}"/>
+                    <h:outputLabel value="#{bundle.EditGebruikerLabel_login}" for="login" />
+                    <h:inputText id="login" value="#{gebruikerController.selected.login}" title="#{bundle.EditGebruikerTitle_login}" required="true" requiredMessage="#{bundle.EditGebruikerRequiredMessage_login}"/>
+                    <h:outputLabel value="#{bundle.EditGebruikerLabel_wachtwoord}" for="wachtwoord" />
+                    <h:inputText id="wachtwoord" value="#{gebruikerController.selected.wachtwoord}" title="#{bundle.EditGebruikerTitle_wachtwoord}" required="true" requiredMessage="#{bundle.EditGebruikerRequiredMessage_wachtwoord}"/>
+                </h:panelGrid>
+                <h:commandLink action="#{gebruikerController.update}" value="#{bundle.EditGebruikerSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditGebruikerViewLink}"/>
+                <br />
+                <h:commandLink action="#{gebruikerController.prepareList}" value="#{bundle.EditGebruikerShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditGebruikerIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
