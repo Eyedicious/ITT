@@ -11,6 +11,12 @@
     background: gainsboro;
 }
 
+ul
+{
+    list-style-type: none;
+    padding: 0px;
+}
+
 #background
 {
     background: #BBBBBB;
@@ -41,9 +47,10 @@
     background: #BBBBBB;
 }
 
-header
+img#logo
 {
-    
+    width:175px;
+    height:125px;
 }
 
 .toprow
@@ -60,35 +67,48 @@ header
     background: #33AAFF;
 }
 
+.menu ul li
+{
+    list-style: none;
+    display: inline;
+}
+
+.menu button
+{
+    width:24%;
+    height: 80px;
+}
+
 #login
 {
     width: 30%;
-    float: right;
+    float: left;
     height:100%;
     background: #33AACC;
-    text-align: right;
-
+}
+#login input 
+{
+    clear:both;
+    width: 60%;
 }
 
 #login form
 {
-    /* text-align: right; */
-}
-
-.menu ul li
-{
-    height: 100%;
-    width: 200px;
-    display: inline;
-}
-
-footer
-{
-    
+    margin-top: 10px;
+    margin-right: 20px;
+    text-align:right;
 }
 
 #registreren
 {
     padding-top: 50px;
 }
+
+#loggedin
+{
+    width: 30%;
+    float: right;
+    height:100%;
+    background: #33AACC;
+    text-align: center;
 }

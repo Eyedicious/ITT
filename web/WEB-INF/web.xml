@@ -8,34 +8,29 @@
         <servlet-name>Products</servlet-name>
         <url-pattern>/Products</url-pattern>
     </servlet-mapping>
-    <session-config>
-        <session-timeout>
-            30
-        </session-timeout>
-    </session-config>
-	<context-param>
-        <param-name>javax.faces.PROJECT_STAGE</param-name>
-        <param-value>Development</param-value>
-    </context-param>
     <servlet>
-        <servlet-name>registreren</servlet-name>
-        <servlet-class>Servlets.registreren</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>inloggen</servlet-name>
-        <servlet-class>Servlets.inloggen</servlet-class>
+        <servlet-name>GebruikerServlet</servlet-name>
+        <servlet-class>Servlets.GebruikerServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>registreren</servlet-name>
+        <servlet-name>GebruikerServlet</servlet-name>
         <url-pattern>/registreren</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>inloggen</servlet-name>
+        <servlet-name>GebruikerServlet</servlet-name>
         <url-pattern>/inloggen</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GebruikerServlet</servlet-name>
+        <url-pattern>/uitloggen</url-pattern>
+    </servlet-mapping>
+    
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
+    <welcome-file-list> 
+        <welcome-file>index.jsp</welcome-file> 
+    </welcome-file-list> 
 </web-app>

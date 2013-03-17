@@ -46,11 +46,14 @@ public class GebruikerServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        if(request.getAttribute("action").equals("registreren")){
+        if(request.getParameter("action").equals("registreren")){
             registreren(request, response);
         }
-        if(request.getAttribute("action").equals("inloggen")){
+        if(request.getParameter("action").equals("inloggen")){
             inloggen(request, response);
+        }
+        if(request.getParameter("action").equals("uitloggen")){
+            uitloggen(request, response);
         }
     }
 
@@ -60,16 +63,26 @@ public class GebruikerServlet extends HttpServlet {
      * 
      */
     private void registreren(HttpServletRequest request, HttpServletResponse response){
-        Dataconnection.ConnectionManager Conn = new Dataconnection.ConnectionManager();
-        Conn.createConnection();
-        boolean succes = Conn.insertIntoTable("INSERT INTO gebruiker(voornaam, tussenvoegsel, achternaam, email, login, wachtwoord) VALUES "
-                +(String)request.getAttribute("voornaam") +","+(String)request.getAttribute("tussenvoegsel") +","+(String)request.getAttribute("achternaam")
-                +","+(String)request.getAttribute("email") +","+(String)request.getAttribute("login") +","+(String)request.getAttribute("wachtwoord"));
-        Conn.closeConnection();
-        if(succes){
-            inloggen(request, response);
-        } else{
-            System.out.println("Failed to reg user");
+        try{
+            Dataconnection.ConnectionManager Conn = new Dataconnection.ConnectionManager();
+            Conn.createConnection();
+            if(!Conn.getFromTable("SELECT * FROM gebruiker WHERE login='"+(String)request.getParameter("loginnaam")+"'").next()){
+                boolean succes = Conn.insertIntoTable("INSERT INTO gebruiker(voornaam, tussenvoegsel, achternaam, email, login, wachtwoord) VALUES ('"
+                        +(String)request.getParameter("voornaam") +"','"+(String)request.getParameter("tussenvoegsel") +"','"+(String)request.getParameter("achternaam")
+                        +"','"+(String)request.getParameter("email") +"','"+(String)request.getParameter("loginnaam") +"','"+(String)request.getParameter("wachtwoord")+"')");
+                Conn.closeConnection();
+                if(succes){
+                    inloggen(request, response);
+                } else{
+                    System.out.println("Failed to reg user");
+                    response.sendRedirect("registreren.jsp");
+                }
+            } else {
+                request.setAttribute("registreerfout", "Deze gebruikernaam is al in gebruik");
+                response.sendRedirect("registreren.jsp");
+            }
+        } catch(Exception e){
+            System.out.println("exception thrown during reg user: "+e);
         }
     }
     /*
@@ -82,9 +95,9 @@ public class GebruikerServlet extends HttpServlet {
         try{
             Dataconnection.ConnectionManager Conn = new Dataconnection.ConnectionManager();
             Conn.createConnection();
-            ResultSet users = Conn.getFromTable("SELECT * FROM gebruiker WHERE login='"+(String)request.getAttribute("loginnaam")+"'");
+            ResultSet users = Conn.getFromTable("SELECT * FROM gebruiker WHERE login='"+(String)request.getParameter("loginnaam")+"'");
             while(users.next()){
-                if(users.getString("wachtwoord").equals((String)request.getAttribute("wachtwoord"))){
+                if(users.getString("wachtwoord").equals((String)request.getParameter("wachtwoord"))){
                     Entities.Gebruiker currentUser = new Entities.Gebruiker();
                     currentUser.setIdGebruiker(users.getInt("idGebruiker"));
                     currentUser.setVoornaam(users.getString("voornaam"));
@@ -103,6 +116,21 @@ public class GebruikerServlet extends HttpServlet {
         }
     }
     
+    /*
+     * 
+     * 
+     * 
+     * 
+     */
+    private void uitloggen(HttpServletRequest request, HttpServletResponse response){
+        try{
+            request.getSession().invalidate();
+            response.sendRedirect("index.jsp");
+        } catch(Exception e){
+            System.out.println("Unable to destroy the session: "+e);
+        }
+    }
+    
     /**
      * Returns a short description of the servlet.
      *
@@ -110,6 +138,6 @@ public class GebruikerServlet extends HttpServlet {
      */
     @Override
     public String getServletInfo() {
-        return "Servlet om in te loggen en registreren";
+        return "Servlet om in te loggen, registreren en uit te loggen";
     }// </editor-fold>
 }
