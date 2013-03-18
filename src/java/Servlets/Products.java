@@ -6,7 +6,10 @@ package Servlets;
  */
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -62,19 +65,51 @@ public class Products extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String sql = "SELECT * FROM products";
-        List<Entities.Product> products =
+        String sql;
+        Dataconnection.ConnectionManager manager = new Dataconnection.ConnectionManager();
+        manager.createConnection();
+        if(request.getParameter("id") != null)
+        {
+            try
+            {
+            sql = "SELECT productnaam, productmerk, beschrijving FROM product WHERE idproduct = "+request.getParameter("id");
+            ResultSet products = manager.insertRawSQL(sql);
+            
+            String html = "<p>"+products.getString("productnaam")+"</p>";
+            html += "<p>"+products.getString("productmerk") +"</p>";
+            html += "<p>"+products.getString("beschrijving") +"</p>";
+            
+            request.setAttribute("products", html);
+            response.sendRedirect("products.jsp");
+            }
+            catch(Exception e)
+            {
+                
+            }
+        }  
+        else
+        {
+        sql = "SELECT * FROM product";
+        
+        ResultSet products = manager.insertRawSQL(sql);
                 String html = "<table>";
         html += "<tr><th>Naam</th><th>Merk</th><th>Prijs</th></tr>";
-        for (Entities.Product p : products) {
-            html += "<tr><a>";
-            html += "<td>" + p.getProductnaam() + "</td>";
-            html += "<td>" + p.getProductmerk() + "</td>";
-            html += "<td>" + p.getPrijs() + "</td>";
-            html += "</a></tr>";
+        try {
+            while (products.next()){
+                html += "<tr><a href='products?id="+products.getInt("idProduct") +"'>";
+                html += "<td>" + products.getString("productnaam") + "</td>";
+                html += "<td>" + products.getString("productmerk") + "</td>";
+                html += "<td>" + products.getDouble("prijs") + "</td>";
+                html += "</a></tr>";
+            }
+            html += "</table>";
+            request.setAttribute("products", html);
+            response.sendRedirect("products.jsp");
+        } catch (SQLException ex) {
+            Logger.getLogger(Products.class.getName()).log(Level.SEVERE, null, ex);
         }
-        html += "</table>";
-
+            
+        }
 
     }
 
