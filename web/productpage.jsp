@@ -4,6 +4,7 @@
 
 <!DOCTYPE html>
 <html>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="Pagestyler.css">
@@ -20,6 +21,9 @@
                         <a href="newproducts.jsp"><li>Nieuwe toevoegingen</li></a>
                         <a href="productpage.jsp"><li>Producten</li></a>
                         <a href="winkelwagen.jsp"><li>Winkelwagen</li></a>
+                        <c:if test="${sessionScope.currentUser == null}">
+                            <button onclick="location.href='registreren.jsp'">Registreren</button>
+                        </c:if>
                     </ul>
                 </div>
                 <div id="login">
@@ -31,8 +35,9 @@
                 </div>
             </div>
             <div class="content">
-                <%= session.getAttribute("productList") %>
+                <%= session.getAttribute("productList")%>
             </div>
+
         </div>
     </body>
 </html>

@@ -68,47 +68,47 @@ public class Products extends HttpServlet {
         String sql;
         Dataconnection.ConnectionManager manager = new Dataconnection.ConnectionManager();
         manager.createConnection();
-        if(request.getParameter("id") != null)
-        {
-            try
-            {
-            sql = "SELECT productnaam, productmerk, beschrijving FROM product WHERE idproduct = "+request.getParameter("id");
+        if (request.getParameter("id") != null) {
+            try {
+                sql = "SELECT productnaam, productmerk, beschrijving FROM product WHERE idproduct = " + request.getParameter("id");
+                ResultSet products = manager.insertRawSQL(sql);
+
+                String html = "<p>" + products.getString("productnaam") + "</p>";
+                html += "<p>" + products.getString("productmerk") + "</p>";
+                html += "<p>" + products.getString("beschrijving") + "</p>";
+                html += "<c:if test='${sessionScope.currentUser != null}'>";
+                html += "<form action=\"products\" method=\"POST\">";
+                html += "<input type=\"hidden\" value=\"<%= request.getAttribute(\"id\")\" name=\"id\" />";
+                html += "<input type=\"submit\" value=\"In winkelwagen\" />";
+                html += "</form>";
+                html += "</c:if>";
+
+                request.setAttribute("products", html);
+                request.setAttribute("id", request.getParameter("id"));
+                response.sendRedirect("products.jsp");
+            } catch (Exception e) {
+            }
+        } else {
+            sql = "SELECT * FROM product";
+
             ResultSet products = manager.insertRawSQL(sql);
-            
-            String html = "<p>"+products.getString("productnaam")+"</p>";
-            html += "<p>"+products.getString("productmerk") +"</p>";
-            html += "<p>"+products.getString("beschrijving") +"</p>";
-            
-            request.setAttribute("products", html);
-            response.sendRedirect("products.jsp");
+            String html = "<table>";
+            html += "<tr><th>Naam</th><th>Merk</th><th>Prijs</th></tr>";
+            try {
+                while (products.next()) {
+                    html += "<tr><a href='products?id=" + products.getInt("idProduct") + "'>";
+                    html += "<td>" + products.getString("productnaam") + "</td>";
+                    html += "<td>" + products.getString("productmerk") + "</td>";
+                    html += "<td>" + products.getDouble("prijs") + "</td>";
+                    html += "</a></tr>";
+                }
+                html += "</table>";
+                request.setAttribute("products", html);
+                response.sendRedirect("products.jsp");
+            } catch (SQLException ex) {
+                Logger.getLogger(Products.class.getName()).log(Level.SEVERE, null, ex);
             }
-            catch(Exception e)
-            {
-                
-            }
-        }  
-        else
-        {
-        sql = "SELECT * FROM product";
-        
-        ResultSet products = manager.insertRawSQL(sql);
-                String html = "<table>";
-        html += "<tr><th>Naam</th><th>Merk</th><th>Prijs</th></tr>";
-        try {
-            while (products.next()){
-                html += "<tr><a href='products?id="+products.getInt("idProduct") +"'>";
-                html += "<td>" + products.getString("productnaam") + "</td>";
-                html += "<td>" + products.getString("productmerk") + "</td>";
-                html += "<td>" + products.getDouble("prijs") + "</td>";
-                html += "</a></tr>";
-            }
-            html += "</table>";
-            request.setAttribute("products", html);
-            response.sendRedirect("products.jsp");
-        } catch (SQLException ex) {
-            Logger.getLogger(Products.class.getName()).log(Level.SEVERE, null, ex);
-        }
-            
+
         }
 
     }
@@ -125,6 +125,7 @@ public class Products extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
     }
 
     /**
