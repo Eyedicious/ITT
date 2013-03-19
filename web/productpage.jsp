@@ -27,11 +27,13 @@
                     </ul>
                 </div>
                 <div id="login">
+                    <!-- requires bartcode override
                     <form method="POST" action="inloggen">
                         Username: <input type="text" id="user" /><br />
                         Wachtwoord: <input type="password" id="pass" /><br />
                         <input type="submit" value="Inloggen" style="margin-right: 40px;"/>
                     </form>
+                    -->
                 </div>
             </div>
             <div class="content">

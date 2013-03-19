@@ -64,7 +64,7 @@ public class Products extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        
         String sql;
         Dataconnection.ConnectionManager manager = new Dataconnection.ConnectionManager();
         manager.createConnection();
@@ -72,17 +72,19 @@ public class Products extends HttpServlet {
             try {
                 sql = "SELECT productnaam, productmerk, beschrijving FROM product WHERE idproduct = " + request.getParameter("id");
                 ResultSet products = manager.insertRawSQL(sql);
-
+                
                 String html = "<p>" + products.getString("productnaam") + "</p>";
                 html += "<p>" + products.getString("productmerk") + "</p>";
                 html += "<p>" + products.getString("beschrijving") + "</p>";
                 html += "<c:if test='${sessionScope.currentUser != null}'>";
                 html += "<form action=\"products\" method=\"POST\">";
                 html += "<input type=\"hidden\" value=\"<%= request.getAttribute(\"id\")\" name=\"id\" />";
+                html += "Aantal: ";
+                html += "<input type=\"text\" name=\"aantal\" /> <br />";
                 html += "<input type=\"submit\" value=\"In winkelwagen\" />";
                 html += "</form>";
                 html += "</c:if>";
-
+                
                 request.setAttribute("products", html);
                 request.setAttribute("id", request.getParameter("id"));
                 response.sendRedirect("products.jsp");
@@ -90,7 +92,7 @@ public class Products extends HttpServlet {
             }
         } else {
             sql = "SELECT * FROM product";
-
+            
             ResultSet products = manager.insertRawSQL(sql);
             String html = "<table>";
             html += "<tr><th>Naam</th><th>Merk</th><th>Prijs</th></tr>";
@@ -108,9 +110,9 @@ public class Products extends HttpServlet {
             } catch (SQLException ex) {
                 Logger.getLogger(Products.class.getName()).log(Level.SEVERE, null, ex);
             }
-
+            
         }
-
+        
     }
 
     /**
@@ -125,7 +127,17 @@ public class Products extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        //insert code to fill shoppingcart here.
+        //redirection to products is mandatory
+        String sql;
+        Dataconnection.ConnectionManager manager = new Dataconnection.ConnectionManager();
+        manager.createConnection();
+        try {
+            sql = "SELECT * FROM winkelwagen WHERE idGebruiker = " + request.getSession(false).getAttribute("idGebruiker") + "";
+            ResultSet cart = manager.insertRawSQL(sql);
+        } catch (Exception e) {
+            
+        }
     }
 
     /**
